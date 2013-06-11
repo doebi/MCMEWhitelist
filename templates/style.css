@@ -1,0 +1,276 @@
+@font-face {
+  font-family: "Roboto Black";
+  src: url(http://www.mcmiddleearth.com/fonts/roboto/Roboto-Black.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Roboto BlackItalic";
+  src: url(http://www.mcmiddleearth.com/fonts/roboto/Roboto-BlackItalic.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Roboto Condensed";
+  src: url(http://www.mcmiddleearth.com/fonts/roboto/Roboto-Condensed.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Roboto CondensedItalic";
+  src: url(http://www.mcmiddleearth.com/fonts/roboto/Roboto-CondensedItalic.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Roboto Regular";
+  src: url(http://www.mcmiddleearth.com/fonts/roboto/Roboto-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Roboto Italic";
+  src: url(http://www.mcmiddleearth.com/fonts/roboto/Roboto-Italic.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Roboto Light";
+  src: url(http://www.mcmiddleearth.com/fonts/roboto/Roboto-Light.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Roboto Medium";
+  src: url(http://www.mcmiddleearth.com/fonts/roboto/Roboto-Medium.ttf) format("truetype");
+}
+body {
+	background-image: url("../img/bg.png");
+	margin-top: 200px;
+	margin: auto;
+}
+DIV.rightplayerlist {
+	width: 200px;
+	margin: 0 auto;
+	background-color: #e7f2dc;
+	padding: 15px;
+	border-bottom-color: #374318;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	text-align: left;
+	float: right;
+}
+DIV.infoleft {
+	width: 750px;
+	margin: 0 auto;
+	background-color: #e7f2dc;
+	padding: 15px;
+	border-bottom-color: #374318;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	text-align: left;
+	float: left;
+}
+DIV.player{
+	background-color: #f4f8e7;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #374318;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-right-color: #374318;
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-left-color: #374318;
+	padding: 1px;
+}
+DIV.player:hover{
+	background-color: #f4f8e7;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #77953a;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-right-color: #77953a;
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-left-color: #77953a;
+	padding: 1px;
+}
+h3 {
+	text-align: left;
+	font-family: "Roboto Black";
+}
+h2 {
+	text-align: left;
+	font-family: "Roboto Black";
+	text-decoration: underline;
+}
+h1 {
+	text-align: center;
+	font-family: "Roboto Black";
+	font-size: xx-large;
+}
+.frown {
+	text-align: center;
+	font-family: "Roboto Black";
+	font-size: xx-large;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #d92231;
+	border-radius: 5px;
+	color: #ffffff;
+	padding: 5px;
+	background-color: #d92231;
+}
+.smile {
+	text-align: center;
+	font-family: "Roboto Black";
+	font-size: xx-large;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #75c044;
+	border-radius: 5px;
+	color: #ffffff;
+	padding: 5px;
+	background-color: #75c044;
+}
+.content {
+	text-align: left;
+	border: 1px solid #77953a;
+	background-color: #f4f8e7;
+	max-width: 750px;
+	min-width: 200px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin: auto;
+	font-family: "Roboto Regular";
+}
+.content2 {
+	text-align: left;
+	border-width: 1px;
+	border-style:dashed;
+	border-color: #77953a;
+	border-radius: 5px;
+	background-color: #f4f8e7;
+	max-width: 200px;
+	max-height: auto;
+	padding: 15px;
+}
+img {
+	padding: 2px;
+	vertical-align: middle;
+}
+table, td {
+	margin: auto;
+	background-color: #e7f2dc;
+	border: 1px solid #77953a;
+	border-collapse: collapse;
+	color: #374318;
+	padding: 5px;
+	font-size: medium
+}
+th {
+	margin: auto;
+	background-color: #f4f8e7;
+	border: 1px solid #77953a;
+	border-collapse: collapse;
+	color: #374318;
+	padding: 5px;
+	font-size: large;
+}
+form {
+	margin: auto;
+}
+.positive {
+	margin: auto;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #75c044;
+	border-radius: 5px;
+	color: #ffffff;
+	padding: 5px;
+	background-color: #75c044;
+	text-align: center;
+	width: 200px;
+	font-family: "Roboto Regular";
+}
+.negative {
+	margin: auto;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #d92231;
+	border-radius: 5px;
+	color: #ffffff;
+	padding: 5px;
+	background-color: #d92231;
+	text-align: center;
+	width: 200px;
+	font-family: "Roboto Regular";
+}
+.header {
+	text-align: left;
+	border-left: 1px solid #77953a;
+	border-right: 1px solid #77953a;
+	border-bottom: 1px solid #77953a;
+	background-color: #e7f2dc;
+	max-width: 750px;
+	max-height: 50px;
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: large;
+	font-family: "Roboto Black";
+	margin: auto;
+}
+.element {
+	padding: 5px;
+	background-color: #77953a;
+	border: 1px solid #77953a;
+	width: 500px;
+}
+.element:hover {
+	padding: 5px;
+	background-color: #886ac5;
+}
+.loginelement {
+	padding: 5px;
+	background-color: #77953a;
+	border: 1px solid #77953a;
+	border-radius: 10px;
+	width: 250px;
+	margin: auto;
+	text-align: center;
+}
+.loginelement:hover {
+	padding: 5px;
+	background-color: #886ac5;
+	border: 1px solid #886ac5;
+	border-radius: 10px;
+	width: 250px;
+	margin: auto;
+	text-align: center;
+}
+.container {
+	padding: 5px;
+	background-color: #f4f8e7;
+	width: 250px;
+	margin: auto;
+}
+.face {
+	height: 64px;
+	width: 64px;
+}
+.loginelement {
+       padding: 5px;
+       background-color: #77953a;
+       border: 1px solid #77953a;
+       border-radius: 10px;
+       width: 250px;
+       margin: auto;
+       text-align: center;
+}
+.loginelement:hover {
+       padding: 5px;
+       background-color: #886ac5;
+       border: 1px solid #886ac5;
+       border-radius: 10px;
+       width: 250px;
+       margin: auto;
+       text-align: center;
+}
+.container {
+       padding: 5px;
+       background-color: #f4f8e7;
+       width: 250px;
+       margin: auto;
+}

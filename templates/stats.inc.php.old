@@ -1,0 +1,138 @@
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.load('visualization', '1', {'packages': ['geochart']});
+      google.setOnLoadCallback(drawChart);
+      <?php
+      	$accepted = mysql_result(mysql_query("SELECT COUNT(*) FROM applies WHERE accepted = '1'"), 0);
+      	$rejected = mysql_result(mysql_query("SELECT COUNT(*) FROM applies WHERE reviewed = '1' AND accepted = '0'"), 0);
+      	$pending = mysql_result(mysql_query("SELECT COUNT(*) FROM applies WHERE reviewed = '0' AND correct = '1'"), 0);
+      	$incorrect = mysql_result(mysql_query("SELECT COUNT(*) FROM applies WHERE correct = '0'"), 0);
+      ?>
+      function drawChart() {
+        var appdata = google.visualization.arrayToDataTable([
+          ['Status', 'Amount'],
+          ['Accepted', <?php echo $accepted; ?>],
+          ['Rejected', <?php echo $rejected; ?>],
+          ['Incorrect', <?php echo $incorrect; ?>],
+          ['Pending', <?php echo $pending; ?>]
+        ]);
+
+       	var timeappdata = google.visualization.arrayToDataTable([
+          ['Month', 'Accepted', 'Rejected', 'Incorrect'],       
+	      <?php
+	      	//$months = array("September 2012", "October 2012", "November 2012", "December 2012", "January 2013");
+	      	$months = array("September 2012", "October 2012");
+	      	$time = array("1346457600", "1349049600", "1351728000", "1354320000", "1356998400", "1359676800");
+	      	foreach($months as $index => $month){
+	      		$starttime = $time[$index];
+	      		$index++;
+	      		$endtime = $time[$index];
+		      	$accepted = mysql_result(mysql_query("SELECT COUNT(*) FROM applies WHERE accepted = '1' AND applytime > '$starttime' AND applytime < '$endtime'"), 0);
+		      	$rejected = mysql_result(mysql_query("SELECT COUNT(*) FROM applies WHERE reviewed = '1' AND accepted = '0' AND applytime > '$starttime' AND applytime < '$endtime'"), 0);
+		      	$pending = mysql_result(mysql_query("SELECT COUNT(*) FROM applies WHERE reviewed = '0' AND correct = '1' AND applytime > '$starttime' AND applytime < '$endtime'"), 0);
+		      	$incorrect = mysql_result(mysql_query("SELECT COUNT(*) FROM applies WHERE correct = '0' AND applytime > '$starttime' AND applytime < '$endtime'"), 0);
+		      	echo "['".$month."', ".$accepted.", ".$rejected.", ".$incorrect."],";
+	      	}
+	      ?>]);
+        
+        var timeoffdata = google.visualization.arrayToDataTable([
+          <?php
+          $officers = mysql_query("SELECT username FROM officers");
+          echo "['Officer'";
+          while ($row = mysql_fetch_assoc($officers)){
+          	$name = $row['username'];
+		      	echo ", '".$name."'";
+          }
+          echo "],";
+	      	foreach($months as $index => $month){
+	      		$starttime = $time[$index];
+	      		$index++;
+	      		$endtime = $time[$index];
+	          echo "['".$month."', ";
+	          $officers = mysql_query("SELECT username FROM officers");
+	          while ($row = mysql_fetch_assoc($officers)){
+	          	$name = $row['username'];
+	          	$count = mysql_result(mysql_query("SELECT COUNT(officer) FROM applies WHERE officer = '$name' AND applytime > '$starttime' AND applytime < '$endtime'"), 0);
+			      	echo $count.", ";
+	          }
+	          echo "],";
+	        }
+          ?>]);
+        
+        var offdata = google.visualization.arrayToDataTable([
+          ['Officer', 'Amount'],
+          <?php
+          $officers = mysql_query("SELECT username FROM officers");
+          while ($row = mysql_fetch_assoc($officers)){
+          	$name = $row['username'];
+          	$count = mysql_result(mysql_query("SELECT COUNT(officer) FROM applies WHERE officer = '$name'"), 0);
+          	echo "['".$name."', ".$count."],";
+          }
+          ?>]);
+        
+        var geoappliesdata = google.visualization.arrayToDataTable([
+          ['Country', 'Amount'],
+          <?php
+          $countries = mysql_query("SELECT DISTINCT country FROM applies");
+          while ($row = mysql_fetch_assoc($countries)){
+          	$cc = $row['country'];
+          	$count = mysql_result(mysql_query("SELECT COUNT(username) FROM applies WHERE country = '$cc'"), 0);
+          	echo "['".$cc."', ".$count."],";
+          }
+          ?>]);
+
+        var appoptions = {
+          title: 'Minecraft Middle-Earth Applications',
+          backgroundColor: '#F4F8E7',
+          is3D: 'true'
+        };
+
+        var timeappoptions = {
+          title: 'Minecraft Middle-Earth Applications in the Past',
+          backgroundColor: '#F4F8E7',
+          isStacked: 'true'
+        };
+
+        var timeoffoptions = {
+          title: 'Reviews per Admission Officer in the Past',
+          backgroundColor: '#F4F8E7'
+        };
+        
+        var offoptions = {
+          title: 'Reviews per Admission Officer',
+          backgroundColor: '#F4F8E7',
+          is3D: 'true'
+        };
+
+        var geoappliesoptions = {
+          backgroundColor: '#F4F8E7'
+        };
+
+        var appchart = new google.visualization.PieChart(document.getElementById('apps'));
+        appchart.draw(appdata, appoptions);
+        
+        var offchart = new google.visualization.PieChart(document.getElementById('officers'));
+        offchart.draw(offdata, offoptions);
+        
+        var timeappschart = new google.visualization.AreaChart(document.getElementById('timeapps'));
+        timeappschart.draw(timeappdata, timeappoptions);
+        
+        var timeofficerchart = new google.visualization.BarChart(document.getElementById('timeofficers'));
+        timeofficerchart.draw(timeoffdata, timeoffoptions);
+        
+        var geoapplieschart = new google.visualization.GeoChart(document.getElementById('geoapplies'));
+        geoapplieschart.draw(geoappliesdata, geoappliesoptions);
+      }
+    </script>
+  </head>
+  <body>
+  	<center>
+	    <div id="apps" style="width: 900px; height: 500px;"></div>
+	    <div id="officers" style="width: 900px; height: 500px;"></div>
+	    <div id="timeapps" style="width: 900px; height: 500px;"></div>
+	    <div id="timeofficers" style="width: 900px; height: 500px;"></div>
+	    <div id="geoapplies" style="width: 900px; height: 500px;"></div>
+	    <div id="space" style="width: 900px; height: 500px;"></div>
+	  </center>
+  </body>
